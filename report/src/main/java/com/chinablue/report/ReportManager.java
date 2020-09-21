@@ -20,10 +20,8 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.RequestBody;
 import retrofit2.Response;
 import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 

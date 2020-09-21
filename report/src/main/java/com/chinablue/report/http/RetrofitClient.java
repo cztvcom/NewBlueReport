@@ -2,14 +2,12 @@ package com.chinablue.report.http;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.widget.TextView;
 
 import com.chinablue.report.interceptor.StringConverterFactory;
 import com.chinablue.report.util.SPUtils;
 
 import okhttp3.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,11 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.internal.platform.Platform;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.http.Part;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.chinablue.report.ReportConfig;
-import com.chinablue.report.ReportManager;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

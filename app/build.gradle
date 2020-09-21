@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-
 android {
     compileSdkVersion 28
 
@@ -39,12 +38,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-//    implementation 'com.chinablue.report:newblue-report:1.0.0'
-
-//    implementation 'com.chinablue.report:newblue-report:1.0.0'
     implementation project(':report')
-//    implementation(name: 'report', ext: 'aar') {
-//        transitive = true
-//    }
 }

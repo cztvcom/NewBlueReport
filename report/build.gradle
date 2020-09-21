@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'maven'
 
 android {
     compileSdkVersion 27
@@ -39,59 +38,52 @@ dependencies {
 
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-def siteUrl = 'https://github.com/295522894/NewBlueReport'
-def gitUrl = 'https://github.com:295522894/NewBlueReport.git'
-def libName = "report"
-group = "com.chinablue.report"
+
+def siteUrl = 'https://github.com/cztvcom/NewBlueReport'
+def gitUrl = 'https://github.com/cztvcom/NewBlueReport.git'
+def libName = "cztv-report"
+
+group = "com.chinablue.cztvreport"
 version = "1.0.0"
-//生成源文件
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
-//生成Javadoc文档
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
-//文档打包成jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
-//拷贝javadoc文件
 task copyDoc(type: Copy) {
     from "${buildDir}/docs/"
     into "docs"
 }
-//上传到JCenter所需要的源码文件
 artifacts {
     archives javadocJar
     archives sourcesJar
 }
-// 配置maven库，生成POM.xml文件
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
         pom {
             project {
                 packaging 'aar'
-                //项目描述，随意填
                 name 'desc content'
                 url siteUrl
                 licenses {
                     license {
-                        //开源协议
                         name 'The Apache Software License, Version 2.0'
                         url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
                 developers {
                     developer {
-                        //开发者的个人信息
                         id 'lbw'
-                        name '295522894'
-                        email 'kevin52072@hotmail.com'
+                        name 'cztv'
+                        email 'newblue3501@outlook.com'
                     }
                 }
                 scm {
@@ -103,19 +95,15 @@ install {
         }
     }
 }
-//上传到JCenter
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
-    user = properties.getProperty("bintray.user")    //读取 local.properties 文件里面的 bintray.user
-    key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        //这里的repo值必须要和你创建Maven仓库的时候的名字一样
-        repo = "NewBlueReport"
-        //发布到JCenter上的项目名字
+        repo = "ReportManager"
         name = libName
-        //项目描述
         desc = 'desc content'
         websiteUrl = siteUrl
         vcsUrl = gitUrl
@@ -126,7 +114,6 @@ bintray {
 
 javadoc {
     options {
-        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
         encoding "UTF-8"
         charSet 'UTF-8'
         author true
@@ -134,12 +121,3 @@ javadoc {
         links "http://docs.oracle.com/javase/7/docs/api"
     }
 }
-
-//uploadArchives {
-//    repositories.mavenDeployer {
-//        repository(url: "file://D://WorkSpace/myaar/repository/")
-//        pom.groupId = "com.chinablue.report"
-//        pom.artifactId = "newblue-report"
-//        pom.version = "1.0.0"
-//    }
-//}
