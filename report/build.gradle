@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -44,7 +44,7 @@ def gitUrl = 'https://github.com/cztvcom/NewBlueReport.git'
 def libName = "cztv-report"
 
 group = "com.chinablue.cztvreport"
-version = "1.0.0"
+version = "1.0.1"
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'

@@ -35,6 +35,7 @@ public final class ReportManager {
     private static Subscription reportSubscription;
     private static int currentVideoTime = 0;// 当前视频时间
     private static Map extra;
+    private static Map deviceInfoMap;
 
     public static void setConfig(ReportConfig config) {
         ReportManager.config = config;
@@ -210,12 +211,20 @@ public final class ReportManager {
             if (entity.getAction_type() == ReportActionType.VIEW.getValue())
                 g_origin_id = UUID.randomUUID().toString();
 
+            if (entity.getAction_type() == ReportActionType.LAUNCH.getValue()) {
+                g_origin_id = uuId;  //g_origin_id 和g_id保持一致
+                deviceInfoMap = entity.getExtra();
+            } else {
+                if (deviceInfoMap != null) {
+                    if (entity.getExtra() != null)
+                        entity.getExtra().putAll(deviceInfoMap);
+                    else
+                        entity.setExtra(deviceInfoMap);
+                }
+            }
+
             HashMap<String, Object> map = new HashMap<>();
             map.put("g_id", uuId);
-
-            if (entity.getAction_type() == ReportActionType.LAUNCH.getValue())
-                g_origin_id = uuId;  //g_origin_id 和g_id保持一致
-
             if (!TextUtils.isEmpty(g_father_id))
                 map.put("g_father_id", g_father_id);
             if (!TextUtils.isEmpty(g_origin_id))
